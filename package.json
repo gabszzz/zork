@@ -11,6 +11,7 @@
   "author": "Gabriel Teodoro",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.20.0",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
     "pretty-error": "^2.1.1"

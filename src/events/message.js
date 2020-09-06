@@ -1,5 +1,4 @@
 const error = require('../utils/handlers/errors.handler');
-const commandSearcher = require('../utils/commandSearcher');
 const { resolve } = require('path');
 
 const prefix = process.env.PREFIX;
@@ -18,11 +17,12 @@ module.exports = async (message) => {
 
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
-    if (!command) throw new Error(error.COMMAND_NOT_INFORMED);
 
-    const commandExists =
-      await commandSearcher(command, resolve(__dirname, '..', 'commands'));
-    if (!commandExists) throw new Error(error.COMMAND_NOT_FOUND);
+    if (!command)
+      throw new Error(error.COMMAND_NOT_INFORMED);
+
+    if (!message.client.commands.get(command))
+      throw new Error(error.COMMAND_NOT_FOUND);
 
     message.client.commands.get(command).execute(message, args);
   } catch (err) {

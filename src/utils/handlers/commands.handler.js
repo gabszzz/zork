@@ -13,8 +13,7 @@ module.exports = (commandsDirectory, client) => {
     }
 
     return commandFiles.length;
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err);
     return false;
   }
