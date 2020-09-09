@@ -8,6 +8,6 @@ async function execute(message) {
 
 module.exports = {
   name: 'cat',
-  description: 'Envia uma foto (gif, jpg...) de um gato aleatório.',
+  description: 'Envia link de imagens (gif, jpg...) de gatos aleatórios.',
   execute
 };
