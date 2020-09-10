@@ -32,14 +32,18 @@ async function execute(message) {
 }
 
 async function getRandomMediaFromInstagramPage(page = 'absolutelymemesbr') {
-  const posts = await instagrammer.profile(page);
-  const max = posts.length;
-  const randomNumber = generateRandomNumber(max);
+  try {
+    const posts = await instagrammer.profile(page);
+    const max = posts.length;
+    const randomNumber = await generateRandomNumber(max);
 
-  return posts[randomNumber].node;
+    return posts[randomNumber].node;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-function generateRandomNumber(max, min = 0) {
+async function generateRandomNumber(max, min = 0) {
   do {
     var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
   } while (randomNumber === global.lastCalculatedNumber);
