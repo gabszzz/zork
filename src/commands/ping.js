@@ -10,12 +10,8 @@ async function execute(message) {
       fields:
       [
         {
-          name: 'Latência com a API do discord:',
+          name: 'Tempo de resposta com a API do discord',
           value: `${Math.round(message.client.ws.ping)}ms.`
-        },
-        {
-          name: 'Latência total de ida e volta (road-trip):',
-          value: `${msg.createdTimestamp - message.createdTimestamp}ms.`
         }
       ],
       timestamp: new Date()
@@ -25,6 +21,6 @@ async function execute(message) {
 
 module.exports = {
   name: 'ping',
-  description: 'Calcula o tempo de resposta com a API do discord e road-trip.',
+  description: 'Calcula o tempo de resposta com a API do discord.',
   execute
 };

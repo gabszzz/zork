@@ -1,3 +1,3 @@
-module.exports = () => {
-  console.log('\n ONLINE ✔ \n');
+module.exports = (client) => {
+  console.log(`\n ONLINE ✔ ${client.guilds.cache.size} servidores. \n`);
 };

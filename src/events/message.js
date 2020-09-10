@@ -1,9 +1,7 @@
-const error = require('../utils/handlers/errors.handler');
-const { resolve } = require('path');
-
+const error = require('../utils/handlers/errors/errors.handler');
 const prefix = process.env.PREFIX;
 
-module.exports = async (message) => {
+module.exports = async (client, message) => {
   if (message.author.id === process.env.OWNER_ID) {
     message.userReference = process.env.OWNER_NAME;
     global.userReference = process.env.OWNER_NAME;

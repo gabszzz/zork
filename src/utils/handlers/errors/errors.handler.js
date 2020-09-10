@@ -1,5 +1,5 @@
 const PrettyError = require('pretty-error');
-const types = require('../errorTypes.js');
+const types = require('./errorTypes.js');
 
 module.exports = {
   ...types,

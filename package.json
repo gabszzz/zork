@@ -1,6 +1,6 @@
 {
   "name": "zork",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Zork is a general-purpose bot for Discord.",
   "main": "src/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "axios": "^0.20.0",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
-    "instagram-scraping": "^1.0.13",
+    "instapro": "^4.0.1",
     "pretty-error": "^2.1.1"
   },
   "devDependencies": {
