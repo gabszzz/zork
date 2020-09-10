@@ -18,15 +18,15 @@ async function execute(message) {
   const media = await getRandomMediaFromInstagramPage();
 
   if (media.__typename === 'GraphVideo') {
-    msg.delete();
-
     const attachment = new MessageAttachment(media.video_url);
+
+    await msg.delete();
     message.channel.send(attachment);
 
   } else if (media.__typename === 'GraphImage') {
-    msg.delete();
-
     const attachment = new MessageAttachment(media.display_url);
+
+    await msg.delete();
     message.channel.send(attachment);
   }
 }
