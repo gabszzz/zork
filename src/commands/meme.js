@@ -1,4 +1,4 @@
-const { getUserByUsername } = require('instapro');
+const instagrammer = require('instagrammer');
 const { MessageAttachment } = require('discord.js');
 const { resolve } = require('path');
 
@@ -32,9 +32,8 @@ async function execute(message) {
 }
 
 async function getRandomMediaFromInstagramPage(page = 'absolutelymemesbr') {
-  const fetch = await getUserByUsername(page);
-  const posts = fetch.edge_owner_to_timeline_media.edges;
-  const max =  posts.length;
+  const posts = await instagrammer.profile(page);
+  const max = posts.length;
   const randomNumber = generateRandomNumber(max);
 
   return posts[randomNumber].node;
