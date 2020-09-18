@@ -7,13 +7,13 @@ module.exports = (commandsDirectory, client) => {
   client.commands = new Discord.Collection();
 
   try {
-    const commandFiles = readdirSync(commandsDirectory);
+    const commandFolders = readdirSync(commandsDirectory);
 
-    for (const file of commandFiles) {
-      const command = require(`${commandsDirectory}/${file}`);
+    for (const commandFolder of commandFolders) {
+      const command = require(`${commandsDirectory}/${commandFolder}/main.js`);
       client.commands.set(command.name, command);
     }
-    console.log(`> ${commandFiles.length} comandos carregados com sucesso.`);
+    console.log(`> ${client.commands.size} comandos carregados com sucesso.`);
   } catch (err) {
     console.error(err);
     throw new Error('Houve uma falha ao carregar os comandos!');
