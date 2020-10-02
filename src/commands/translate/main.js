@@ -38,6 +38,8 @@ async function execute(message) {
           lang.toLowerCase() === 'la'
         ) {
           message.channel.send(translatedText);
+        } else if (translatedText.toLowerCase() === 'друг') {
+          message.channel.send('<:apyr:670415182664695818>');
         } else {
           message.channel.send(`**Tradução:**\`\`\`${translatedText}\`\`\``);
         }
