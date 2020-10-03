@@ -1,27 +1,16 @@
 const { MessageAttachment } = require('discord.js');
-const { resolve } = require('path');
 const memeList = require('./memes.json');
-const { sleep } = require('sleep');
 
 async function execute(message) {
-  const loadingGIF =
-    resolve(__dirname, '..', '..', 'assets', 'images', 'loading.gif');
-
   const msg = await message
     .channel
-    .send(`Processando meme, ${message.userReference}...`, {
-      files: [loadingGIF]
-    });
+    .send(`Processando meme, ${message.userReference}...`);
 
-  sleep(3);
   const randomNumber = await generateRandomNumber(memeList.length);
   const meme = memeList[randomNumber];
   await msg.delete();
   const attachment = new MessageAttachment(meme);
-
-
   message.channel.send(attachment);
-
 }
 
 async function generateRandomNumber(max, min = 0) {
