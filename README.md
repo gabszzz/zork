@@ -10,7 +10,7 @@ Para executar o bot em sua máquina, crie o arquivo _.env_ seguindo o exemplo do
 npm install # ou yarn install
 ```
 
-## Contributing
+## Contribuições
 Contribua caso sinta a necessidade, mas futuramente haverá um guia para contribuições.
 
 ## License
