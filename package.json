@@ -1,10 +1,6 @@
 {
   "name": "zork",
   "version": "1.0.0",
-  "engines": {
-    "node": "12.x",
-    "yarn": "1.x"
-  },
   "description": "Zork is a general-purpose bot for Discord.",
   "main": "src/index.js",
   "scripts": {
