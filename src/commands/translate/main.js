@@ -13,6 +13,12 @@ async function execute(message, args) {
   const url = mkUrl(lang, text);
   const result = await get(url);
   const translatedText = result.data[0][0][0];
+
+  if (!translatedText) {
+    message.reply('não foi possível traduzir o texto.');
+    return;
+  }
+
   message.channel.send(`**Tradução:**\`\`\`${translatedText}\`\`\``);
 }
 
