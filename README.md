@@ -9,6 +9,8 @@ Para executar o bot em sua máquina, crie o arquivo _.env_ seguindo o exemplo do
 ```bash
 npm install # ou yarn install
 ```
+## Observações
+1. Ás vezes, quando tenho tempo, adiciono novas funcionalidades e refatoro algumas coisas... Todavia, não se assuste com a simplicidade.
 
 ## Contribuições
 Contribua caso sinta a necessidade, mas futuramente haverá um guia para contribuições.
