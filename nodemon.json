@@ -1,0 +1,5 @@
+{
+  "ignore": [
+    "src/commands/meme/memes.json"
+  ]
+}

@@ -1,15 +1,22 @@
-console.log('> Iniciando...');
-require('dotenv').config();
+(async () => {
 
-const Discord = require('discord.js');
-const commandHandler = require('./utils/handlers/commands/commands.handler');
-const eventsHandler = require('./utils/handlers/events/events.handler');
-const { resolve } = require('path');
+  console.log('> Iniciando...');
+  require('dotenv').config();
 
-const client = new Discord.Client();
+  const Discord = require('discord.js');
+  const commandHandler = require('./utils/handlers/commands/commands.handler');
+  const eventsHandler = require('./utils/handlers/events/events.handler');
+  const { resolve } = require('path');
 
-commandHandler(resolve(__dirname, 'commands'), client);
-eventsHandler(resolve(__dirname, 'events'), client);
+  const client = new Discord.Client();
 
-console.log('> Autenticando-se com a API do Discord...');
-client.login(process.env.BOT_TOKEN);
+  commandHandler(resolve(__dirname, 'commands'), client);
+  eventsHandler(resolve(__dirname, 'events'), client);
+
+  const updateMemeList = require('./commands/meme/updateMemeList');
+  await updateMemeList();
+
+  console.log('> Autenticando-se com a API do Discord...');
+  client.login(process.env.BOT_TOKEN);
+
+})();
