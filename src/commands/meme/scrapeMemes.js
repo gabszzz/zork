@@ -4,7 +4,7 @@ module.exports = async (igPageList) => {
   if (!igPageList)
     return false;
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
 
   await page.goto('https://www.instagram.com');
