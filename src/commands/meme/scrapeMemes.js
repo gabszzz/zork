@@ -8,17 +8,17 @@ module.exports = async (igPageList) => {
   const page = await browser.newPage();
 
   await page.goto('https://www.instagram.com');
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(10000);
   await page.type('input[name=username]', process.env.INSTAGRAM_USER);
   await page.type('input[name=password]', process.env.INSTAGRAM_PASS);
   await page.click('button[type=submit]');
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(10000);
 
   // Getting all posts links of all pages
   const postsLinks = new Array();
   for (let igPage of igPageList) {
     await page.goto(`https://www.instagram.com/${igPage}`);
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(10000);
     const links = await page.evaluate(() => {
       const nodeList = document.querySelectorAll('div.v1Nh3 a[href]');
       const arr = [...nodeList];
@@ -31,7 +31,7 @@ module.exports = async (igPageList) => {
   const memesLinks = new Array();
   for (let postLink of postsLinks) {
     await page.goto(postLink);
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(10000);
     const mediaLink = await page.evaluate(() => {
       const media =
         document
