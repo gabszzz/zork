@@ -4,7 +4,13 @@ module.exports = async (igPageList) => {
   if (!igPageList)
     return false;
 
-  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+  const browser = await puppeteer.launch({
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+    ]
+  });
+
   const page = await browser.newPage();
 
   await page.goto('https://www.instagram.com');
@@ -46,6 +52,6 @@ module.exports = async (igPageList) => {
   }
 
   browser.close();
-  console.log(memesLinks);
+  console.log('memesLinks', memesLinks);
   return memesLinks;
 };
