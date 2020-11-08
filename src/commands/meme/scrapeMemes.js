@@ -46,5 +46,6 @@ module.exports = async (igPageList) => {
   }
 
   browser.close();
+  console.log(memesLinks);
   return memesLinks;
 };
