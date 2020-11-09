@@ -1,8 +1,7 @@
 const puppeteer = require('puppeteer');
 
 module.exports = async (igPageList) => {
-  if (!igPageList)
-    return false;
+  if (!igPageList) return false;
 
   const browser = await puppeteer.launch({
     args: [
@@ -14,9 +13,14 @@ module.exports = async (igPageList) => {
   const page = await browser.newPage();
 
   await page.goto('https://www.instagram.com');
-  await page.waitForTimeout(3000);
+
+  await page.waitForSelector('input[name=username]');
   await page.type('input[name=username]', process.env.INSTAGRAM_USER);
+
+  await page.waitForSelector('input[name=password]');
   await page.type('input[name=password]', process.env.INSTAGRAM_PASS);
+
+  await page.waitForSelector('button[type=submit]');
   await page.click('button[type=submit]');
   await page.waitForTimeout(3000);
 
@@ -24,7 +28,8 @@ module.exports = async (igPageList) => {
   const postsLinks = new Array();
   for (let igPage of igPageList) {
     await page.goto(`https://www.instagram.com/${igPage}`);
-    await page.waitForTimeout(3000);
+    await page.waitForSelector('article.ySN3v');
+
     const links = await page.evaluate(() => {
       const nodeList = document.querySelectorAll('div.v1Nh3 a[href]');
       const arr = [...nodeList];
@@ -33,11 +38,10 @@ module.exports = async (igPageList) => {
     postsLinks.push(...links);
   }
 
-  // Getting all media links of posts
   const memesLinks = new Array();
   for (let postLink of postsLinks) {
     await page.goto(postLink);
-    await page.waitForTimeout(3000);
+    await page.waitForSelector('article');
     const mediaLink = await page.evaluate(() => {
       const media =
         document
