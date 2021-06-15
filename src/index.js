@@ -13,6 +13,9 @@
   commandHandler(resolve(__dirname, 'commands'), client);
   eventsHandler(resolve(__dirname, 'events'), client);
 
+  const updateMemeList = require('./commands/meme/updateMemeList');
+  await updateMemeList();
+
   console.log('> Autenticando-se com a API do Discord...');
   client.login(process.env.BOT_TOKEN);
 
