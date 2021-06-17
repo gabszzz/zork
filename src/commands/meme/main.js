@@ -5,14 +5,6 @@ async function execute(message) {
   const memeList = await getMemeList();
   const randomNumber = await generateRandomNumber((memeList.length - 1));
 
-  // if (!memeList || !memeList[randomNumber]) {
-  //   message.channel.send(`Houve um erro inesperado, ${message.userReference}.`);
-  //   return;
-  // }
-  console.log('randomNumber', randomNumber);
-  console.log('memeList', memeList);
-  console.log('meme', memeList[randomNumber]);
-
   const attachment = new MessageAttachment(memeList[randomNumber]);
   message.reply(attachment);
 }

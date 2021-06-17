@@ -27,7 +27,7 @@
         ],
         "max-len": [
           "error",
-          { "code": 80 }
+          { "code": 82 }
         ],
         "brace-style": [
           "error"

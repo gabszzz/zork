@@ -1,61 +1,26 @@
-const puppeteer = require('puppeteer');
+const { get } = require('axios');
 
-module.exports = async (igPageList) => {
-  if (!igPageList) return false;
+async function scrapeMemes(igPages) {
 
-  const browser = await puppeteer.launch({
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox'
-    ]
-  });
+  const memeURLs = [];
 
-  const page = await browser.newPage();
+  for (let i in igPages) {
 
-  await page.goto('https://www.instagram.com');
+    const url = `https://www.instagram.com/${igPages[i]}/channel/?__a=1`;
+    const json = await get(url);
+    const posts = json.data.graphql.user.edge_owner_to_timeline_media.edges;
 
-  await page.waitForSelector('input[name=username]');
-  await page.type('input[name=username]', process.env.INSTAGRAM_USER);
-
-  await page.waitForSelector('input[name=password]');
-  await page.type('input[name=password]', process.env.INSTAGRAM_PASS);
-
-  await page.waitForSelector('button[type=submit]');
-  await page.click('button[type=submit]');
-  await page.waitForTimeout(15000);
-
-  // Getting all posts links of all pages
-  const postsLinks = new Array();
-  for (let igPage of igPageList) {
-    await page.goto(`https://www.instagram.com/${igPage}`);
-    await page.waitForSelector('article');
-
-    const links = await page.evaluate(() => {
-      const nodeList = document.querySelectorAll('div.v1Nh3 a[href]');
-      const arr = [...nodeList];
-      return arr.map(post => post.href);
+    posts.forEach(post => {
+      if (post.node.is_video)
+        memeURLs.push(post.node.video_url);
+      else
+        memeURLs.push(post.node.display_url);
     });
-    postsLinks.push(...links);
+
   }
 
-  const memesLinks = new Array();
-  for (let postLink of postsLinks) {
-    await page.goto(postLink);
-    await page.waitForSelector('article');
-    const mediaLink = await page.evaluate(() => {
-      const media =
-        document
-          .querySelector('article video')
-        ||
-        document
-          .querySelector('article img.FFVAD');
+  return memeURLs;
+}
 
-      return media.getAttribute('src');
-    });
-    memesLinks.push(mediaLink);
-  }
 
-  browser.close();
-  console.log('memesLinks', memesLinks);
-  return memesLinks;
-};
+module.exports = scrapeMemes;
