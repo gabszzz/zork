@@ -21,7 +21,7 @@ async function update() {
   return true;
 }
 
-module.exports = async (msInterval = 86400000) => {
+module.exports = async (minInterval = 30) => {
   await update();
-  setInterval(update, msInterval);
+  setInterval(update, minInterval * 60000);
 };
