@@ -16,5 +16,6 @@ async function getRandomGayPercent(min = 0, max = 100) {
 module.exports = {
   name: 'gaypercent',
   description: 'Revela o quão gay uma pessoa é, em porcentagem.',
+  usage: process.env.PREFIX + ' gaypercent <marque alguém>',
   execute
 };

@@ -22,5 +22,6 @@ async function execute(message) {
 module.exports = {
   name: 'ping',
   description: 'Calcula o tempo de resposta com a API do discord.',
+  usage: process.env.PREFIX + ' ping',
   execute
 };

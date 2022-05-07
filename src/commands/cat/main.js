@@ -9,5 +9,6 @@ async function execute(message) {
 module.exports = {
   name: 'cat',
   description: 'Envia link de imagens (gif, jpg...) de gatos aleatórios.',
+  usage: process.env.PREFIX + ' cat',
   execute
 };

@@ -24,6 +24,8 @@ async function execute(message, args) {
 
 module.exports = {
   name: 'translate',
-  description: 'Traduz uma palavra, frase ou texto para um idioma específico.',
+  description: 'Traduz um texto para um idioma específico ' +
+  '(identifica o texto de entrada automaticamente)',
+  usage: process.env.PREFIX + ' translate <pt/en/ru...> <texto>',
   execute
 };
